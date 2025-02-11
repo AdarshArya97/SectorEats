@@ -17,6 +17,14 @@ def bestseller():
 def about_us():
     return render_template("about_us.html")
 
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+@app.route("/privacy")
+def privacy():
+    return render_template("privacy.html")
+
 
 db = SQLAlchemy(app)
 

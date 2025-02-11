@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Sectoreats | Login {% endblock %}
+
+{% block style %}
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .max-w-sm {
+            max-width: 24rem;
+        }
+    </style>
+    
+{% endblock %}
+
+{% block main %}
+<main class="bg-white d-flex align-items-center justify-content-center min-vh-100">
+<div class="w-100 max-w-sm mx-auto text-center " style="margin-top: 50px;">
+    <h1 class="h5 font-weight-bold mb-4">What's your email?</h1>
+    <input type="text" class="form-control mb-3" placeholder="Enter your email">
+    <h1 class="h5 font-weight-bold mb-4">What's your password?</h1>
+    <input type="password" class="form-control mb-3" placeholder="Enter your password">
+    <button class="btn btn-dark btn-block mb-3">Continue</button>
+    <div class="d-flex align-items-center mb-3">
+        <hr class="flex-grow-1">
+        <span class="px-2 text-muted">or</span>
+        <hr class="flex-grow-1">
+    </div>
+    <button class="btn btn-light btn-block mb-3 d-flex align-items-center justify-content-center">
+        <img src="https://img.icons8.com/?size=48&id=17949&format=png" alt="Google logo" class="mr-2" width="20" height="20">
+        Continue with Google
+    </button>
+    <button class="btn btn-light btn-block mb-3 d-flex align-items-center justify-content-center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple logo" class="mr-2" width="20" height="20">
+        Continue with Apple
+    </button>
+    <div class="d-flex align-items-center mb-3">
+        <hr class="flex-grow-1">
+        <span class="px-2 text-muted">or</span>
+        <hr class="flex-grow-1">
+    </div>
+    <button class="btn btn-light btn-block mb-3 d-flex align-items-center justify-content-center">
+        <img src="https://img.icons8.com/?size=48&id=13019&format=png" alt="QR code icon" class="mr-2" width="20" height="20">
+        Log in with QR code
+    </button>
+    <p class="text-muted small">
+        By proceeding, you consent to get calls, WhatsApp or SMS/RCS messages, including by automated means, from SectorEats and its affiliates to the number provided.
+    </p>
+</div>
+</main>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    
+{% endblock %}
