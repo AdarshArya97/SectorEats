@@ -6,6 +6,18 @@
     <link rel="stylesheet" href="../statics/css/base.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+    <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <title>{% block title %}{% endblock %}</title>
 
     {% block style %}
@@ -45,7 +57,7 @@
                     <a href="#" style="color:white;font-weight: 900;text-decoration: none;">Get the app</a>
                     </div>
                 
-                <div style="background-color: black;height: 8vh;width: 7vw;display: grid;place-items: center;border-radius: 10px;">
+                <div style="background-color: black;height: 8vh;width: 7vw;display: grid;place-items: center;border-radius: 10px;margin-right: 3vw;">
                 <a href="#" class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" 
                     aria-controls="offcanvasNavbar" style="color:white;font-weight: 900;">Sign In</a>
                 </div>
@@ -85,17 +97,237 @@
             </form>
         </div>
     </div>
-
-    <main>
-
+    <main style="height:100vh;width: 100vw;">
+        {% block main %}
+            
+        {% endblock %}
     </main>
 
-    <!-- footer section  -->
-    <footer>
+    {% block other %}
+        
+    {% endblock %}
 
-    </footer>
+
+
+    
+    <!-- footer section  -->
+    <footer class="bg-gray-100 py-8" >
+        <div class="container mx-auto px-4">
+         <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+          <div class="mb-8 md:mb-0">
+           <img alt="SectorEats logo" class="inline-block" height="100" src="logo.png" width="150"/>
+           <p class="text-orange-500 text-2xl font-bold inline-block ml-2">
+            SectorEats
+           </p>
+           <p class="text-gray-500 mt-2">
+            © 2025 SectorEats Limited
+           </p>
+          </div>
+         </div>
+         <div class="flex flex-col md:flex-row justify-end items-start md:items-center">
+          <div class="flex flex-col md:flex-row md:space-x-16">
+           <div class="mb-8 md:mb-0">
+            <h3 class="font-bold text-gray-900">
+             Company
+            </h3>
+            <ul class="mt-2 space-y-2">
+             <li>
+              <a class="hover:underline" href="#">
+               About Us
+              </a>
+             </li>
+             <li>
+              <a class="hover:underline" href="#">
+               Investor Relations
+              </a>
+             </li>
+             <li>
+              <a class="hover:underline" href="#">
+               Careers
+              </a>
+             </li>
+             <li>
+              <a class="hover:underline" href="#">
+               Team
+              </a>
+             </li>
+             <li>
+              <a class="hover:underline" href="#">
+               Swiggy One
+              </a>
+             </li>
+             <li>
+              <a class="hover:underline" href="#">
+               Swiggy Instamart
+              </a>
+             </li>
+             <li>
+              <a class="hover:underline" href="#">
+               Swiggy Dineout
+              </a>
+             </li>
+             <li>
+              <a class="hover:underline" href="#">
+               Swiggy Genie
+              </a>
+             </li>
+            </ul>
+           </div>
+           <div class="mb-8 md:mb-0">
+            <h3 class="font-bold text-gray-900">
+             Contact us
+            </h3>
+            <ul class="mt-2 space-y-2">
+             <li>
+              <a class="hover:underline" href="#">
+               Help &amp; Support
+              </a>
+             </li>
+             <li>
+              <a class="hover:underline" href="#">
+               Partner with us
+              </a>
+             </li>
+             <li>
+              <a class="hover:underline" href="#">
+               Ride with us
+              </a>
+             </li>
+            </ul>
+            <h3 class="font-bold text-gray-900 mt-4">
+             Legal
+            </h3>
+            <ul class="mt-2 space-y-2">
+             <li>
+              <a class="hover:underline" href="#">
+               Terms &amp; Conditions
+              </a>
+             </li>
+             <li>
+              <a class="hover:underline" href="#">
+               Cookie Policy
+              </a>
+             </li>
+             <li>
+              <a class="hover:underline" href="#">
+               Privacy Policy
+              </a>
+             </li>
+            </ul>
+           </div>
+           <div class="mb-8 md:mb-0">
+            <h3 class="font-bold text-gray-900">
+             Available in:
+            </h3>
+            <ul class="mt-2 space-y-2">
+             <li>
+              <a class="hover:underline" href="#">
+               Bangalore
+              </a>
+             </li>
+             <li>
+              <a class="hover:underline" href="#">
+               Gurgaon
+              </a>
+             </li>
+             <li>
+              <a class="hover:underline" href="#">
+               Hyderabad
+              </a>
+             </li>
+             <li>
+              <a class="hover:underline" href="#">
+               Delhi
+              </a>
+             </li>
+             <li>
+              <a class="hover:underline" href="#">
+               Mumbai
+              </a>
+             </li>
+             <li>
+              <a class="hover:underline" href="#">
+               Pune
+              </a>
+             </li>
+            </ul>
+            <div class="mt-2">
+             <span class="bg-gray-200 text-gray-500 px-2 py-1 rounded">
+              679 cities
+             </span>
+            </div>
+           </div>
+           <div>
+            <h3 class="font-bold text-gray-900">
+             Life at Swiggy
+            </h3>
+            <ul class="mt-2 space-y-2">
+             <li>
+              <a class="hover:underline" href="#">
+               Explore with Swiggy
+              </a>
+             </li>
+             <li>
+              <a class="hover:underline" href="#">
+               Swiggy News
+              </a>
+             </li>
+             <li>
+              <a class="hover:underline" href="#">
+               Snackables
+              </a>
+             </li>
+            </ul>
+            <h3 class="font-bold text-gray-900 mt-4">
+             Social Links
+            </h3>
+            <div class="flex space-x-4 mt-2">
+             <a class="text-gray-500 hover:text-gray-900" href="#">
+              <i class="fab fa-linkedin">
+              </i>
+             </a>
+             <a class="text-gray-500 hover:text-gray-900" href="#">
+              <i class="fab fa-instagram">
+              </i>
+             </a>
+             <a class="text-gray-500 hover:text-gray-900" href="#">
+              <i class="fab fa-facebook">
+              </i>
+             </a>
+             <a class="text-gray-500 hover:text-gray-900" href="#">
+              <i class="fab fa-pinterest">
+              </i>
+             </a>
+             <a class="text-gray-500 hover:text-gray-900" href="#">
+              <i class="fab fa-xing">
+              </i>
+             </a>
+            </div>
+           </div>
+          </div>
+         </div>
+         <div class="border-t border-gray-300 mt-8 pt-8 text-center">
+          <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
+           <p class="font-bold text-gray-900">
+            For better experience, download the Swiggy app now
+           </p>
+           <div class="flex space-x-4">
+            <a href="#">
+             <img alt="Download on the App Store" height="50" src="image copy.png" width="150"/>
+            </a>
+            <a href="#">
+             <img alt="Get it on Google Play" height="50" src="image copy 2.png" width="150"/>
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </footer>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
+
+
 </html>
