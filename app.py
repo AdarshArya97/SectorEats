@@ -9,6 +9,12 @@ app=Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, "app.db")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+
+
 @app.route("/bestseller")
 def bestseller():
     return render_template("bestseller.html")
