@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+#nav1{
+    height:15vh;
+    width: 100vw;
+    background-color: #FF5200 !important;
+}
+#logo-header{
+    color:white !important;
+    font-size: 5vh;
+    font-weight: 900;
+
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    text-decoration: underline;
+}
+
+header{
+    position:fixed;
+    z-index: 1000;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    padding: 0 20px;
+}

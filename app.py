@@ -13,5 +13,13 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 def bestseller():
     return render_template("bestseller.html")
 
+@app.route("/about_us")
+def about_us():
+    return render_template("about_us.html")
+
 
 db = SQLAlchemy(app)
+
+if __name__=="__main__":
+    app.run(debug=True)
+   
