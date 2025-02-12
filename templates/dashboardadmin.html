@@ -1,0 +1,268 @@
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            width: 250px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .progress-bar {
+            background-color: #28a745;
+        }
+        .card-header {
+            background-color: #fff;
+            border-bottom: none;
+        }
+        .card-body {
+            padding: 1.25rem;
+        }
+        .table th, .table td {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="sidebar p-4">
+            <img src="https://storage.googleapis.com/a1aa/image/rtmfN_gfT9goGb_mtBglkIVx4P-fK1JYa1D4a_tYqHc.jpg" alt="Swiggy logo" class="img-fluid mb-4">
+            <nav class="nav flex-column">
+                <a class="nav-link text-orange-500" href="#"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a>
+                <a class="nav-link text-dark" href="#"><i class="fas fa-list-alt mr-2"></i> Overview</a>
+                <a class="nav-link text-dark" href="#"><i class="fas fa-box mr-2"></i> Orders</a>
+                <a class="nav-link text-dark" href="#"><i class="fas fa-chart-line mr-2"></i> Analytics</a>
+                <a class="nav-link text-dark" href="#"><i class="fas fa-money-bill-wave mr-2"></i> Payments</a>
+                <a class="nav-link text-dark" href="#"><i class="fas fa-motorcycle mr-2"></i> Drivers</a>
+                <a class="nav-link text-dark" href="#"><i class="fas fa-ad mr-2"></i> Advertising</a>
+                <a class="nav-link text-dark" href="#"><i class="fas fa-utensils mr-2"></i> Restaurant</a>
+                <a class="nav-link text-dark" href="#"><i class="fas fa-envelope mr-2"></i> Messages</a>
+                <a class="nav-link text-dark" href="#"><i class="fas fa-bell mr-2"></i> Notifications</a>
+                <a class="nav-link text-dark" href="#"><i class="fas fa-file-alt mr-2"></i> Report</a>
+                <a class="nav-link text-dark" href="#"><i class="fas fa-cog mr-2"></i> Settings</a>
+            </nav>
+        </div>
+        <!-- Main Content -->
+        <div class="content">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h3">Overview</h1>
+                <div class="d-flex align-items-center">
+                    <input type="text" class="form-control mr-3" placeholder="Search">
+                    <i class="fas fa-bell text-dark mr-3"></i>
+                    <img src="https://storage.googleapis.com/a1aa/image/KeLqUbNPxOn446FwVp2auT0HTrzPLsDgg3BNfzfb9i4.jpg" alt="User avatar" class="rounded-circle" width="40" height="40">
+                    <span class="ml-2">Girish Benna</span>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Sales Report</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <p class="h4 mb-0">₹ 90,500</p>
+                                    <p class="text-muted mb-0">₹ 1,35,000 Planned</p>
+                                </div>
+                                <div class="text-success">67.04%</div>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 67.04%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">This Week</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <p class="h4 mb-0">₹ 19,15,000</p>
+                                    <p class="text-muted mb-0">₹ 24,00,000 Planned</p>
+                                </div>
+                                <div class="text-success">79.78%</div>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 79.78%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">This Month</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <p class="h4 mb-0">₹ 65,05,000</p>
+                                    <p class="text-muted mb-0">₹ 98,00,000 Planned</p>
+                                </div>
+                                <div class="text-success">66.38%</div>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 66.38%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Newly Added Restaurants</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <img src="https://storage.googleapis.com/a1aa/image/GSl2z5UuXMXIFhw7myzpS-kvZwbibsxoSXlbV_ArQb8.jpg" alt="Swiggy offer" class="img-fluid rounded">
+                                </div>
+                                <div class="col-6">
+                                    <img src="https://storage.googleapis.com/a1aa/image/GSl2z5UuXMXIFhw7myzpS-kvZwbibsxoSXlbV_ArQb8.jpg" alt="Swiggy offer" class="img-fluid rounded">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-6 mb-4">
+                            <div class="card text-center bg-warning text-white">
+                                <div class="card-body">
+                                    <p class="h4 mb-0">1899</p>
+                                    <p class="mb-0">Delivered</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-4">
+                            <div class="card text-center bg-danger text-white">
+                                <div class="card-body">
+                                    <p class="h4 mb-0">120</p>
+                                    <p class="mb-0">Cancelled</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-4">
+                            <div class="card text-center bg-primary text-white">
+                                <div class="card-body">
+                                    <p class="h4 mb-0">248</p>
+                                    <p class="mb-0">Pending</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-4">
+                            <div class="card text-center bg-success text-white">
+                                <div class="card-body">
+                                    <p class="h4 mb-0">2267</p>
+                                    <p class="mb-0">Total Orders</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title">Recent Orders</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Delivery Driver</th>
+                                    <th>Driver ID</th>
+                                    <th>Payment Mode</th>
+                                    <th>Price</th>
+                                    <th>Pickup Time</th>
+                                    <th>Order Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>25472</td>
+                                    <td>James Septimus</td>
+                                    <td>00341</td>
+                                    <td>PhonePe</td>
+                                    <td>₹ 246.00</td>
+                                    <td>01:14 PM</td>
+                                    <td class="text-primary">Processing</td>
+                                </tr>
+                                <tr>
+                                    <td>25470</td>
+                                    <td>Alfonso Westervelt</td>
+                                    <td>00342</td>
+                                    <td>GooglePay</td>
+                                    <td>₹ 350.00</td>
+                                    <td>12:00 PM</td>
+                                    <td class="text-success">Delivered</td>
+                                </tr>
+                                <tr>
+                                    <td>25474</td>
+                                    <td>Ryan Lipshutz</td>
+                                    <td>00343</td>
+                                    <td>PayTM</td>
+                                    <td>₹ 560.00</td>
+                                    <td>12:15 PM</td>
+                                    <td class="text-primary">Pending</td>
+                                </tr>
+                                <tr>
+                                    <td>25473</td>
+                                    <td>Justin Vetros</td>
+                                    <td>00344</td>
+                                    <td>PhonePe</td>
+                                    <td>₹ 170.00</td>
+                                    <td>12:00 PM</td>
+                                    <td class="text-warning">On the way</td>
+                                </tr>
+                                <tr>
+                                    <td>25475</td>
+                                    <td>Javlon Ralfs</td>
+                                    <td>00345</td>
+                                    <td>Cash On Delivery</td>
+                                    <td>₹ 400.00</td>
+                                    <td>11:40 AM</td>
+                                    <td class="text-danger">Cancelled</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Order Date</h5>
+                </div>
+                <div class="card-body d-flex align-items-center">
+                    <span class="text-primary mr-2">16-Dec-2023</span>
+                    <i class="fas fa-calendar-alt text-dark mr-3"></i>
+                    <i class="fas fa-sync-alt text-dark"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
