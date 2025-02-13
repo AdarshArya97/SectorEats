@@ -43,7 +43,12 @@
         <input type="email" class="form-control mb-3" name="email" placeholder="Email" required>
         <input type="text" class="form-control mb-3" name="address" placeholder="Address" required>
         <input type="date" id="dob" class="form-control mb-3" placeholder="Date of Birth" name="dob" required>
-        <input type="number" id="mobile" class="form-control mb-3" placeholder="mobile" name="mobile" maxlength="10" pattern="[0-9]{10}" oninput="this.value=this.value.replace(/[^0-9]/g,'')" required style="border-radius: 0;">
+        <input type="text" id="mobile" class="form-control mb-3" 
+       placeholder="Enter Mobile Number" name="mobile" 
+       maxlength="10" pattern="[0-9]{10}" 
+       oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)" 
+       required style="border-radius: 0;">
+
         <select class="form-control mb-3" required name="role">
             <option value="">Select Role</option>
             <option value="admin" name="admin">Admin</option>
@@ -61,6 +66,8 @@
         </div>
         
         <button class="btn btn-dark btn-block mb-3" onclick="validateForm()">Sign Up</button>
+
+        <a href="{{url_for('login')}}">Have an account ? Log In</a>
         
         <p class="text-muted small">
             By signing up, you agree to our Terms of Service and Privacy Policy.
