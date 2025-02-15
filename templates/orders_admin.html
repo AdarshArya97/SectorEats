@@ -1,0 +1,38 @@
+{% extends "admin_dashboard.html" %}
+
+{% block style %}
+<style>
+.nav>a:nth-of-type(2){
+    color:#ff5200 !important;
+}
+</style>
+    
+{% endblock %}
+
+{% block main %}
+<div class="container mt-4" >
+    <h2 class="mb-4" align="center">Orders Management</h2>
+    <div class="row">
+        {% for order in orders %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Order ID: {{ order.order_id }}</h5>
+                    <p class="card-text"><strong>Customer:</strong> {{ order.customer_name }}</p>
+                    <p class="card-text"><strong>Status:</strong>
+                        <select class="form-control status-select" data-order-id="{{ order.order_id }}">
+                            <option value="Pending" {% if order.status == 'Pending' %} selected {% endif %}>Pending</option>
+                            <option value="Accepted" {% if order.status == 'Accepted' %} selected {% endif %}>Accepted</option>
+                            <option value="Being Prepared" {% if order.status == 'Being Prepared' %} selected {% endif %}>Being Prepared</option>
+                            <option value="Out for Delivery" {% if order.status == 'Out for Delivery' %} selected {% endif %}>Out for Delivery</option>
+                            <option value="Delivered" {% if order.status == 'Delivered' %} selected {% endif %}>Delivered</option>
+                        </select>
+                    </p>
+                    <button class="btn btn-primary update-btn" data-order-id="{{ order.order_id }}">Update</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -25,8 +25,10 @@
             <img src="../static/images/logo.png" alt="Swiggy logo" class="img-fluid mb-4">
             <nav class="nav flex-column">
                 <a class="nav-link " href="{{url_for('admin_dashboard')}}"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a>
-                <a class="nav-link text-dark" href="#"><i class="fas fa-box mr-2"></i> Orders</a>
+                <a class="nav-link text-dark" href="{{ url_for('orders_admin') }}"><i class="fas fa-box mr-2"></i> Orders</a>
                 <a class="nav-link text-dark" href="{{ url_for('add_restaurant') }}"><i class="fas fa-utensils mr-2"></i> Restaurant</a>
+                <a class="nav-link text-dark" href="{{ url_for('logout') }}"><i class="fas fa-utensils mr-2"></i> Logout</a>
+
 
                 
             </nav>

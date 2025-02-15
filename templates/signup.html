@@ -24,8 +24,8 @@
 
 {% block main %}
 <main class="bg-white d-flex align-items-center justify-content-center min-vh-100">
-    <div class="w-100 max-w-sm mx-auto text-center" style="margin-top: 50px;">
-        <h1 class="h5 font-weight-bold mb-4">Sign Up</h1>
+    <div class="w-100 max-w-sm mx-auto text-center" style="margin-top: 100px;">
+        <h1 class="h5 font-weight-bold mb-4" >Sign Up</h1>
 
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -39,29 +39,30 @@
         
         <form method="POST" action="{{ url_for('signup') }}">
         
-        <input type="text" class="form-control mb-3" name ="name" placeholder="Username" required>
-        <input type="email" class="form-control mb-3" name="email" placeholder="Email" required>
-        <input type="text" class="form-control mb-3" name="address" placeholder="Address" required>
-        <input type="date" id="dob" class="form-control mb-3" placeholder="Date of Birth" name="dob" required>
+        <input type="text" class="form-control mb-3" name ="name" placeholder="Username" required style="height:8vh;border-radius: 20px;">
+        <input type="email" class="form-control mb-3" name="email" placeholder="Email" required style="height:8vh;border-radius: 20px;">
+        <input type="text" class="form-control mb-3" name="address" placeholder="Address" required style="height:8vh;border-radius: 20px;">
+        <input type="text" class="form-control mb-3" name="city" placeholder="City" required style="height:8vh;border-radius: 20px;">
+        <input type="date" id="dob" class="form-control mb-3" placeholder="Date of Birth" name="dob" style="height:8vh;border-radius: 20px;" required>
         <input type="text" id="mobile" class="form-control mb-3" 
        placeholder="Enter Mobile Number" name="mobile" 
        maxlength="10" pattern="[0-9]{10}" 
        oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)" 
-       required style="border-radius: 0;">
+       required style="height:8vh;border-radius: 20px;" >
 
-        <select class="form-control mb-3" required name="role">
+        <select class="form-control mb-3" required name="role" style="height:8vh;border-radius: 20px;">
             <option value="">Select Role</option>
             <option value="admin" name="admin">Admin</option>
             <option value="customer" name="customer">Customer</option>
         </select>
         
         <div class="password-wrapper mb-3">
-            <input type="password" id="password" class="form-control" placeholder="Password" name= "password" required>
+            <input type="password" id="password" class="form-control" placeholder="Password" name= "password" required style="height:8vh;border-radius: 20px;">
             <i class="fas fa-eye toggle-password" onclick="togglePassword('password')"></i>
         </div>
         
         <div class="password-wrapper mb-3">
-            <input type="password" id="confirm_password" class="form-control" placeholder="Confirm Password" name="confirm_password" required>
+            <input type="password" id="confirm_password" class="form-control" placeholder="Confirm Password" name="confirm_password" style="height:8vh;border-radius: 20px;" required>
             <i class="fas fa-eye toggle-password" onclick="togglePassword('confirm_password')"></i>
         </div>
         
