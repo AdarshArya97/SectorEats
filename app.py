@@ -327,10 +327,8 @@ def add_restaurant():
     return render_template('add_restaurant.html')
 
 
-
-
-
 @app.route('/menu/<int:restaurant_id>')
+@login_required
 def view_menu(restaurant_id):
     restaurant = Restaurant.query.get_or_404(restaurant_id)
     menu_items = MenuItem.query.filter_by(restaurant_id=restaurant_id).all()
