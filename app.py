@@ -27,8 +27,8 @@ def get_food_image(food_name):
     response = requests.get(url).json()
     
     if response["results"]:
-        return response["results"][0]["urls"]["regular"]  # Get the image URL
-    return "https://via.placeholder.com/400x300.png?text=No+Image"  # Fallback image
+        return response["results"][0]["urls"]["regular"]  
+    return "https://via.placeholder.com/400x300.png?text=No+Image" 
 
 
 db = SQLAlchemy(app)
@@ -81,8 +81,7 @@ class Order(db.Model):
     status = db.Column(db.String(20), nullable=False, default="Pending")
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
     
-    # Relationship with OrderItem
-    user = db.relationship("User", backref="orders")  # Relationship with User model
+    user = db.relationship("User", backref="orders")  
     order_items = db.relationship('OrderItem', backref='order', lazy=True)
     
     @property
@@ -101,7 +100,7 @@ class OrderItem(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
    
     menu_item_id = db.Column(db.Integer, db.ForeignKey('menu_item.id'), nullable=False)
-    menu_item = db.relationship("MenuItem", backref="order_items")  # Add relationship
+    menu_item = db.relationship("MenuItem", backref="order_items")  
 
 
    
@@ -109,12 +108,12 @@ class OrderItem(db.Model):
 class Cart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    item_id = db.Column(db.Integer, db.ForeignKey('menu_item.id'), nullable=False)  # Foreign key reference
+    item_id = db.Column(db.Integer, db.ForeignKey('menu_item.id'), nullable=False) 
     name = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
 
-    menu_item = db.relationship("MenuItem", backref="cart_items")  # ✅ Add this line
+    menu_item = db.relationship("MenuItem", backref="cart_items")  
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -128,12 +127,12 @@ def check_mobile():
     data = request.get_json()
     mobile = data.get('mobile')
 
-    # Check if user exists
+    
     user = User.query.filter_by(mobile=mobile).first()
     if user:
-        return jsonify({'exists': True})  # Mobile found
+        return jsonify({'exists': True})  
     else:
-        return jsonify({'exists': False})  # Mobile not found
+        return jsonify({'exists': False})  
 
 @app.route('/login_mobile', methods=['GET','POST'])
 def login_mobile():
@@ -144,7 +143,7 @@ def login_mobile():
      if not user:
          return "Mobile number does not exist!", 400
 
-     # Check password using the method defined in the User model
+     
      if user and bcrypt.check_password_hash(user.password, password):
             login_user(user)
             flash("Login successful!", "success")
@@ -254,10 +253,9 @@ def admin_dashboard():
 def delete_restaurant(rid):
     restaurant = Restaurant.query.get_or_404(rid)
 
-    # Delete associated menu items first
     MenuItem.query.filter_by(restaurant_id=rid).delete()
 
-    # Delete restaurant image if exists
+  
     if restaurant.image_filename:
         image_path = os.path.join(app.config['UPLOAD_FOLDER'], restaurant.image_filename)
         if os.path.exists(image_path):
@@ -287,18 +285,18 @@ def user_dashboard():
 @app.route('/submit_restaurant', methods=['POST'])
 @admin_required
 def submit_restaurant():
-    rid = request.form.get('rid')  # Get restaurant ID (if updating)
+    rid = request.form.get('rid')  
     rname = request.form['restaurant_name']
     raddress = request.form['restaurant_address']
     
     image = request.files['restaurant_image']
     
-    if rid:  # If restaurant ID exists, update existing record
+    if rid: 
         restaurant = Restaurant.query.get_or_404(rid)
         restaurant.rname = rname
         restaurant.raddress = raddress
         
-        if image:  # If a new image is uploaded, replace the old one
+        if image: 
             old_image_path = os.path.join(app.config['UPLOAD_FOLDER'], restaurant.image_filename)
             if os.path.exists(old_image_path):
                 os.remove(old_image_path)
@@ -308,7 +306,7 @@ def submit_restaurant():
             restaurant.image_filename = image_filename
         
         flash('Restaurant updated successfully!', 'success')
-    else:  # If no restaurant ID, add new restaurant
+    else:  
         image_filename = image.filename if image else None
         if image:
             image.save(os.path.join(app.config['UPLOAD_FOLDER'], image_filename))
@@ -333,7 +331,7 @@ def view_menu(restaurant_id):
     restaurant = Restaurant.query.get_or_404(restaurant_id)
     menu_items = MenuItem.query.filter_by(restaurant_id=restaurant_id).all()
 
-    # Fetch images dynamically for each item
+    
     for item in menu_items:
         item.image_url = get_food_image(item.name)
 
@@ -409,28 +407,28 @@ def checkout():
         flash("Your cart is empty!", "danger")
         return redirect(url_for('cart'))
 
-    # Create a new order
+    
     new_order = Order(
         user_id=current_user.id,
         status="Pending",
         timestamp=datetime.utcnow()
     )
     db.session.add(new_order)
-    db.session.commit()  # Commit to generate order ID
+    db.session.commit()  
 
-    # Add each cart item separately as an order item
+
     for item in cart_items:
-        for _ in range(item.quantity):  # Ensure multiple quantities are separate
+        for _ in range(item.quantity):  
             order_item = OrderItem(
                 order_id=new_order.id,
                 menu_item_id=item.item_id,  
                 name=item.name,  
                 price=item.price,  
-                quantity=1  # Each entry should have quantity 1
+                quantity=1  
             )
             db.session.add(order_item)
 
-    # Clear the cart after order is placed
+  
     Cart.query.filter_by(user_id=current_user.id).delete()
     db.session.commit()
 
@@ -444,13 +442,13 @@ def checkout():
 def change_address():
     new_address = request.form.get('new_address')
     if new_address:
-        current_user.address = new_address  # Update address
-        db.session.commit()  # Save changes to database
+        current_user.address = new_address  
+        db.session.commit() 
         flash('Address updated successfully!', 'success')
     else:
         flash('Please enter a valid address.', 'danger')
 
-    return redirect(url_for('user_dashboard'))  # Redirect back to dashboard
+    return redirect(url_for('user_dashboard'))  
 
 
 @app.route('/admin_dashboard/orders')
@@ -464,7 +462,7 @@ def orders_admin():
 @login_required
 def add_to_cart():
     item_id = request.form.get('item_id')
-    quantity = int(request.form.get('quantity', 1))  # Default to 1 if not provided
+    quantity = int(request.form.get('quantity', 1))  
 
     if not item_id or quantity <= 0:
         flash("Invalid item or quantity!", "danger")
@@ -476,13 +474,13 @@ def add_to_cart():
         flash("Menu item not found!", "danger")
         return redirect(url_for('user_dashboard'))
 
-    # Check if the same item already exists in the cart
+   
     existing_cart_item = Cart.query.filter_by(user_id=current_user.id, item_id=item_id).first()
 
     if existing_cart_item:
-        existing_cart_item.quantity = min(5, existing_cart_item.quantity + quantity)  # Limit max quantity to 5
+        existing_cart_item.quantity = min(5, existing_cart_item.quantity + quantity)  
     else:
-        # Add a new cart item
+        
         new_cart_item = Cart(
             user_id=current_user.id,
             item_id=menu_item.id,
@@ -495,11 +493,6 @@ def add_to_cart():
     db.session.commit()
     flash(f"{menu_item.name} added to cart!", "success")
     return redirect(url_for('view_menu', restaurant_id=menu_item.restaurant_id))
-
-
-
-
-
 
 @app.route('/update_order_status/<int:order_id>', methods=['POST'])
 @admin_required
@@ -521,7 +514,7 @@ def update_order_status(order_id):
 @app.route('/my_orders')
 @login_required
 def my_orders():
-    orders = Order.query.filter_by(user_id=current_user.id).all()  # Fetch orders for logged-in user
+    orders = Order.query.filter_by(user_id=current_user.id).all()  
     return render_template("my_orders.html", orders=orders)
 
 
