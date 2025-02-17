@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
@@ -86,7 +87,7 @@
 
     <nav class="sidebar">
         <div class="text-center">
-            <img src="../static/images/logo.png" alt="Logo" class="img-fluid" style="height: 100px; width: 150px;">
+            <a href="{{url_for('index')}}"><img src="../static/images/logo.png" alt="Logo" class="img-fluid" style="height: 100px; width: 150px;"></a>
             <p class="mt-2 font-weight-bold">Address: {{ current_user.address }} </p>
             <button class="btn btn-sm btn-warning ml-2" onclick="showChangeAddress()">Change Address</button>
 

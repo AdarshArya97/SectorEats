@@ -169,7 +169,7 @@ def login():
             if user.role == "admin":
                 return redirect(url_for("admin_dashboard"))
             else:
-                return redirect(url_for("user_dashboard"))
+                return redirect(url_for("user_dashboard2"))
         else:
             flash("Invalid email or password.", "danger")
     return render_template("login.html")
@@ -563,6 +563,10 @@ def update_cart(item_id):
             flash("Item not found in cart.", "danger")
 
     return redirect(url_for('cart'))
+
+@app.route("/user_dashboard2")
+def user_dashboard2():
+    return render_template("kfc.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
