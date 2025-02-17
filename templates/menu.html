@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="container mt-5" style="margin-top: 15vh !important;">
+    <h2 class="mb-4 text-center text-primary" style="font-size: 6vh !important;">{{ restaurant.rname }} Menu</h2>
+
+    {% if menu_items %}
+    <div class="row">
+        {% for item in menu_items %}
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card shadow-lg border-0 rounded-4">
+                <img src="{{ item.image_url }}" class="card-img-top rounded-top" alt="{{ item.name }}" style="height: 250px; object-fit: cover;">
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-bold text-dark">{{ item.name }}</h5>
+                    <p class="card-text text-success fs-5 fw-semibold">₹{{ item.price }}</p>
+
+                    <form method="POST" action="{{ url_for('add_to_cart') }}">
+                        <input type="hidden" name="item_id" value="{{ item.id }}">
+                        <input type="hidden" name="name" value="{{ item.name }}">
+                        <input type="hidden" name="price" value="{{ item.price }}">
+
+                        <div class="d-flex justify-content-center align-items-center">
+                            <button type="button" class="btn btn-outline-danger btn-sm me-2" onclick="updateQuantity('{{ item.id }}', -1)">➖</button>
+                            <input type="number" id="quantity-{{ item.id }}" name="quantity_{{ item.id }}" value="1" min="1" max="5" class="text-center border-0" style="width: 40px;">
+                            <button type="button" class="btn btn-outline-success btn-sm ms-2" onclick="updateQuantity('{{ item.id }}', 1)">➕</button>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary px-4 py-2 mt-2 rounded-pill">
+                            🛒 Order Now
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p class="text-center text-muted">No menu items available.</p>
+    {% endif %}
+</div>
+
+<script>
+    function updateQuantity(itemId, change) {
+        let quantityInput = document.getElementById(`quantity-${itemId}`);
+        let currentQuantity = parseInt(quantityInput.value);
+        let newQuantity = Math.max(1, Math.min(5, currentQuantity + change)); 
+        quantityInput.value = newQuantity;
+    }
+</script>
+{% endblock %}
