@@ -115,19 +115,34 @@
             </ul>
             <br>
     
-            <form class="d-flex mt-3" role="search" style="flex-direction: column;">
+            <form class="d-flex mt-3" role="search" style="flex-direction: column;" action="{{url_for('login_mobile')}}" method="POST">
                 <div class="form-floating">
                     <input type="tel" class="form-control" id="phoneInput" placeholder="Phone Number" 
                         maxlength="10" pattern="[0-9]{10}" 
                         oninput="this.value=this.value.replace(/[^0-9]/g,'')" 
-                        required style="border-radius: 0;">
-                    <label for="phoneInput" style="font-size: 2.5vh;font-weight: bold;color: gray;">Phone Number</label>
+                        required style="border-radius: 0;" name="mobile_login">
+                    <label for="phoneInput" style="font-size: 2.5vh; font-weight: bold; color: gray;">
+                        Phone Number
+                    </label>
                 </div>
-                <button class="btn btn-outline-success" type="submit" 
-                    style="background-color:#ff5200;color:white;margin-top: 3vh;font-size: 2.5vh;font-weight: 500;
-                    border: none;border-radius: 0;">
-                    LOGIN
-                </button>
+                
+                <!-- Hidden Password Field -->
+                <div class="form-floating" id="passwordDiv" style="display: none; margin-top: 15px;">
+                    <input type="password" class="form-control" id="passwordInput" placeholder="Password" 
+                        name="password" required style="border-radius: 0;">
+                    <label for="passwordInput" style="font-size: 2.5vh; font-weight: bold; color: gray;">
+                        Enter Password
+                    </label>
+                </div>
+                
+                <!-- Login Button -->
+                <button type="submit" class="btn btn-primary mt-3" id="loginButton" disabled style="background-color:#ff5200;color:white;margin-top: 3vh;font-size: 2.5vh;font-weight: 500;
+                    border: none;border-radius: 0;">Login</button>
+
+                </form>
+                
+                <p id="errorMsg" style="color: red; display: none;"></p>
+            
                 <a href="{{url_for('login')}}" style="margin-top: 3vh;">Continue with email instead</a>
             </form>
         </div>
@@ -370,6 +385,35 @@
                 mobileMenu.classList.toggle('hidden');
             });
     </script>
+
+<script>
+    document.getElementById("phoneInput").addEventListener("input", function() {
+        let mobile = this.value;
+        if (mobile.length === 10) {
+            fetch('/check_mobile', {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ mobile: mobile })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.exists) {
+                    document.getElementById("passwordDiv").style.display = "block";
+                    document.getElementById("loginButton").disabled = false;
+                } else {
+                    document.getElementById("passwordDiv").style.display = "none";
+                    document.getElementById("loginButton").disabled = true;
+                    alert("Mobile number does not exist!");
+                }
+            });
+        } else {
+            document.getElementById("passwordDiv").style.display = "none";
+            document.getElementById("loginButton").disabled = true;
+        }
+    });
+    </script>
+    
+
 </body>
 
 

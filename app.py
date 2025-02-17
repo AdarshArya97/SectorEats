@@ -123,6 +123,39 @@ def load_user(user_id):
 with app.app_context():
     db.create_all()
 
+@app.route('/check_mobile', methods=['POST'])
+def check_mobile():
+    data = request.get_json()
+    mobile = data.get('mobile')
+
+    # Check if user exists
+    user = User.query.filter_by(mobile=mobile).first()
+    if user:
+        return jsonify({'exists': True})  # Mobile found
+    else:
+        return jsonify({'exists': False})  # Mobile not found
+
+@app.route('/login_mobile', methods=['GET','POST'])
+def login_mobile():
+    if request.method=="POST":
+     mobile = request.form.get('mobile_login')
+     password = request.form.get('password')
+     user = User.query.filter_by(mobile=mobile).first()
+     if not user:
+         return "Mobile number does not exist!", 400
+
+     # Check password using the method defined in the User model
+     if user and bcrypt.check_password_hash(user.password, password):
+            login_user(user)
+            flash("Login successful!", "success")
+            if user.role == "admin":
+                return redirect(url_for("admin_dashboard"))
+            else:
+                return redirect(url_for("user_dashboard"))
+     else:
+      flash("Invalid password.", "danger")
+      return render_template("login.html")
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -532,8 +565,6 @@ def update_cart(item_id):
             flash("Item not found in cart.", "danger")
 
     return redirect(url_for('cart'))
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)
