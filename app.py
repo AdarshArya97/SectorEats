@@ -565,6 +565,7 @@ def update_cart(item_id):
     return redirect(url_for('cart'))
 
 @app.route("/user_dashboard2")
+@login_required
 def user_dashboard2():
     return render_template("kfc.html")
 
