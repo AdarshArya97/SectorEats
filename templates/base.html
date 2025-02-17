@@ -55,14 +55,22 @@
 
                 <!-- Get the App Button -->
                 <div class="border-2 border-white px-4 py-2 rounded-lg">
-                    <a href="#" class="text-white font-bold" style="color: white;">Get the app</a>
+                    {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('user_dashboard') }}" class="text-white font-bold" style="color: white;">Dashboard</a>
+                    {% else %}
+                    <a href="#" class="text-white font-bold" style="color: white;">Get the App</a>
+                    {% endif %}
+
+                    
                 </div>
+                
 
                 <!-- Sign In Button -->
                 <div class="bg-black px-4 py-2 rounded-lg">
                     {% if current_user.is_authenticated %}
                         <a href="{{ url_for('logout') }}" class="text-white font-bold" style="color:white">Logout</a>
                     {% else %}
+                    
                         <a href="#" class="text-white font-bold" class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" 
                         aria-controls="offcanvasNavbar" style="color:white">Sign In</a>
                     {% endif %}

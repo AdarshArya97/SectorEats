@@ -1,258 +1,127 @@
-{% extends 'admin_dashboard.html' %}
+{% extends "admin_dashboard.html" %}
 
-{% block style %}
-
-<style>
-
-.content {
-    margin-left: 250px;
-    padding: 20px;
-}
-.progress-bar {
-    background-color: #28a745;
-}
-.card-header {
-    background-color: #fff;
-    border-bottom: none;
-}
-.card-body {
-    padding: 1.25rem;
-}
-.table th, .table td {
-    vertical-align: middle;
-}
-</style>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-{% endblock %}     
-
-   
 {% block main %}
-    
+<style>
+    .content-wrapper {
+        margin-left: 260px; /* Adjust for sidebar width */
+        padding: 50px;
+        min-height: 100vh;
+        width: calc(100vw - 260px);
+        background-color: #1e1e2f; /* Dark background */
+        color: #ffffff;
+        text-align: center;
+        position: relative;
+    }
 
-        <div class="content">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 class="h3">Overview</h1>
-                <div class="d-flex align-items-center">
-                    <input type="text" class="form-control mr-3" placeholder="Search">
-                    <i class="fas fa-bell text-dark mr-3"></i>
-                    <img src="https://storage.googleapis.com/a1aa/image/KeLqUbNPxOn446FwVp2auT0HTrzPLsDgg3BNfzfb9i4.jpg" alt="User avatar" class="rounded-circle" width="40" height="40">
-                    <a href="#" class="ml-2" data-bs-toggle="offcanvas" data-bs-target="#profileOffcanvas">
-                        <span class="ml-2">{{ mail }}</span>
-                    </a>                    
-                </div>
-            </div>
-            <!-- Offcanvas Profile Sidebar -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="profileOffcanvas" aria-labelledby="profileOffcanvasLabel">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="profileOffcanvasLabel">My Profile</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 1.2rem;
+        color: #b0b0b0;
+    }
+
+    .welcome-box {
+        background: #29293d;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Profile Icon */
+    .profile-icon {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: url('https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png') no-repeat center/cover;
+        cursor: pointer;
+        border: 2px solid #ffffff;
+        transition: 0.3s;
+    }
+
+    .profile-icon:hover {
+        border-color: #007bff;
+    }
+
+    /* Profile Popup */
+    .profile-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #29293d;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        min-width: 300px;
+    }
+
+    .profile-popup img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+
+    .profile-popup h4 {
+        margin: 10px 0;
+        font-size: 1.5rem;
+        color: #ffffff;
+    }
+
+    .profile-popup p {
+        font-size: 1rem;
+        color: #b0b0b0;
+        margin: 5px 0;
+    }
+
+    .close-btn {
+        margin-top: 15px;
+        padding: 8px 20px;
+        background: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .close-btn:hover {
+        background: #b02a37;
+    }
+</style>
+
+<div class="content-wrapper d-flex justify-content-center align-items-center">
+    <div class="welcome-box">
+        <h1>Welcome, Admin! 👋</h1>
+        <p>Manage orders, users, and more with ease.</p>
     </div>
-    <div class="offcanvas-body">
-        <div class="profile-info text-center">
-            <img src="https://storage.googleapis.com/a1aa/image/KeLqUbNPxOn446FwVp2auT0HTrzPLsDgg3BNfzfb9i4.jpg" class="rounded-circle mb-3" alt="Profile Picture" style="height:11vh;width: 10vw;">
-            <h4>{{ current_user.name }}</h4>
-            <p><strong>Email:</strong> {{ current_user.email }}</p>
-            <p><strong>Mobile:</strong> {{ current_user.mobile }}</p>
-        </div>
-    </div>
+
+    <!-- Profile Icon -->
+    <div class="profile-icon" onclick="toggleProfilePopup()"></div>
 </div>
-            <div class="row mb-4">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title">Sales Report</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <div>
-                                    <p class="h4 mb-0">₹ 90,500</p>
-                                    <p class="text-muted mb-0">₹ 1,35,000 Planned</p>
-                                </div>
-                                <div class="text-success">67.04%</div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 67.04%;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title">This Week</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <div>
-                                    <p class="h4 mb-0">₹ 19,15,000</p>
-                                    <p class="text-muted mb-0">₹ 24,00,000 Planned</p>
-                                </div>
-                                <div class="text-success">79.78%</div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 79.78%;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title">This Month</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <div>
-                                    <p class="h4 mb-0">₹ 65,05,000</p>
-                                    <p class="text-muted mb-0">₹ 98,00,000 Planned</p>
-                                </div>
-                                <div class="text-success">66.38%</div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 66.38%;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title">Newly Added Restaurants</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <img src="https://storage.googleapis.com/a1aa/image/GSl2z5UuXMXIFhw7myzpS-kvZwbibsxoSXlbV_ArQb8.jpg" alt="Swiggy offer" class="img-fluid rounded">
-                                </div>
-                                <div class="col-6">
-                                    <img src="https://storage.googleapis.com/a1aa/image/GSl2z5UuXMXIFhw7myzpS-kvZwbibsxoSXlbV_ArQb8.jpg" alt="Swiggy offer" class="img-fluid rounded">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-6 mb-4">
-                            <div class="card text-center bg-warning text-white">
-                                <div class="card-body">
-                                    <p class="h4 mb-0">1899</p>
-                                    <p class="mb-0">Delivered</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 mb-4">
-                            <div class="card text-center bg-danger text-white">
-                                <div class="card-body">
-                                    <p class="h4 mb-0">120</p>
-                                    <p class="mb-0">Cancelled</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 mb-4">
-                            <div class="card text-center bg-primary text-white">
-                                <div class="card-body">
-                                    <p class="h4 mb-0">248</p>
-                                    <p class="mb-0">Pending</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 mb-4">
-                            <div class="card text-center bg-success text-white">
-                                <div class="card-body">
-                                    <p class="h4 mb-0">2267</p>
-                                    <p class="mb-0">Total Orders</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h5 class="card-title">Recent Orders</h5>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Order ID</th>
-                                    <th>Delivery Driver</th>
-                                    <th>Driver ID</th>
-                                    <th>Payment Mode</th>
-                                    <th>Price</th>
-                                    <th>Pickup Time</th>
-                                    <th>Order Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>25472</td>
-                                    <td>James Septimus</td>
-                                    <td>00341</td>
-                                    <td>PhonePe</td>
-                                    <td>₹ 246.00</td>
-                                    <td>01:14 PM</td>
-                                    <td class="text-primary">Processing</td>
-                                </tr>
-                                <tr>
-                                    <td>25470</td>
-                                    <td>Alfonso Westervelt</td>
-                                    <td>00342</td>
-                                    <td>GooglePay</td>
-                                    <td>₹ 350.00</td>
-                                    <td>12:00 PM</td>
-                                    <td class="text-success">Delivered</td>
-                                </tr>
-                                <tr>
-                                    <td>25474</td>
-                                    <td>Ryan Lipshutz</td>
-                                    <td>00343</td>
-                                    <td>PayTM</td>
-                                    <td>₹ 560.00</td>
-                                    <td>12:15 PM</td>
-                                    <td class="text-primary">Pending</td>
-                                </tr>
-                                <tr>
-                                    <td>25473</td>
-                                    <td>Justin Vetros</td>
-                                    <td>00344</td>
-                                    <td>PhonePe</td>
-                                    <td>₹ 170.00</td>
-                                    <td>12:00 PM</td>
-                                    <td class="text-warning">On the way</td>
-                                </tr>
-                                <tr>
-                                    <td>25475</td>
-                                    <td>Javlon Ralfs</td>
-                                    <td>00345</td>
-                                    <td>Cash On Delivery</td>
-                                    <td>₹ 400.00</td>
-                                    <td>11:40 AM</td>
-                                    <td class="text-danger">Cancelled</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title">Order Date</h5>
-                </div>
-                <div class="card-body d-flex align-items-center">
-                    <span class="text-primary mr-2">16-Dec-2023</span>
-                    <i class="fas fa-calendar-alt text-dark mr-3"></i>
-                    <i class="fas fa-sync-alt text-dark"></i>
-                </div>
-            </div>
-        </div>
-   
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        
-{% endblock %}
 
+<!-- Profile Popup -->
+<div id="profile-popup" class="profile-popup">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="Profile Picture">
+    <h4>{{ current_user.name }}</h4>
+    <p><strong>📞 Phone:</strong> {{ current_user.mobile }}</p>
+    <p><strong>✉ Email:</strong> {{ current_user.email }}</p>
+    <button class="close-btn" onclick="toggleProfilePopup()">Close</button>
+</div>
+
+<script>
+    function toggleProfilePopup() {
+        var popup = document.getElementById("profile-popup");
+        popup.style.display = (popup.style.display === "block") ? "none" : "block";
+    }
+</script>
+
+{% endblock %}
