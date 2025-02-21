@@ -4,10 +4,15 @@
 <div class="container mt-5" style="margin-top: 15vh !important;">
     <h2 class="mb-4 text-center text-primary" style="font-size: 6vh !important;">{{ restaurant.rname }} Menu</h2>
 
+    <!-- Search bar -->
+    <div class="mb-4 d-flex justify-content-center">
+        <input type="text" id="search-bar" class="form-control w-50" placeholder="Search menu..." onkeyup="searchMenu()">
+    </div>
+
     {% if menu_items %}
-    <div class="row d-flex flex-column align-items-center">
+    <div class="row d-flex flex-column align-items-center" id="menu-container">
         {% for item in menu_items %}
-        <div class="col-10 mb-4">
+        <div class="col-10 mb-4 menu-item" data-name="{{ item.name|lower }}">
             <div class="d-flex shadow-lg border-0 rounded-4 p-3 align-items-center position-relative" style="background-color: #f8f9fa; border-left: 8px solid {% if 'chicken' in item.name|lower %}red{% else %}green{% endif %};">
                 <div class="flex-grow-1">
                     <h5 class="fw-bold text-dark">{{ item.name }}</h5>
@@ -23,7 +28,7 @@
                         <button id="order-button-{{ item.id }}" type="button" class="btn btn-primary px-4 py-2 mt-2 rounded-pill" onclick="toggleQuantity('{{ item.id }}')">
                             🛒 Order Now
                         </button>
-                        
+
                         <!-- Quantity selection container -->
                         <div id="quantity-container-{{ item.id }}" class="d-none mt-2 d-flex justify-content-center align-items-center">
                             <button type="button" class="btn btn-outline-danger btn-sm me-2" onclick="updateQuantity('{{ item.id }}', -1)">➖</button>
@@ -46,6 +51,20 @@
 </div>
 
 <script>
+    function searchMenu() {
+        let query = document.getElementById('search-bar').value.toLowerCase();
+        let items = document.querySelectorAll('.menu-item');
+        
+        items.forEach(item => {
+            let itemName = item.getAttribute('data-name');
+            if (itemName.includes(query)) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
     function updateQuantity(itemId, change) {
         let quantityInput = document.getElementById(`quantity-${itemId}`);
         let currentQuantity = parseInt(quantityInput.value);
@@ -93,7 +112,5 @@
         form.submit();
     }
 </script>
-
-
 
 {% endblock %}
