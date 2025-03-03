@@ -1,1 +1,1 @@
-This is our 2nd sem project based on flask. 
+This is our 2nd semester project based on flask. 
